@@ -36,24 +36,25 @@ public class GroundManager : MonoBehaviour
 
     public void newGround()
     {
-        if(groundHeihest != null)
+        if(groundHeihest == null)
         {
-            GetHighestGroundPos();
-            Debug.Log(groundHeihest.name);
-            Ground groundComp = groundHeihest.GetComponent<Ground>();
-            groundPool.GetObj().transform.position = groundComp.spawnPos.transform.position;
+            groundHeihest = groundPool.GetObj();
+            groundHeihest.transform.position = Vector3.zero;
         }
         else
         {
-            groundPool.GetObj().transform.position = Vector3.zero;
+            Ground groundComp = groundHeihest.GetComponent<Ground>();
+            groundHeihest = groundPool.GetObj();
+            groundHeihest.transform.position = groundComp.spawnPos.transform.position;
+       
+
+
         }
     }
 
     public void GetHighestGroundPos()
     {
         float highestZ = float.MinValue;
-
-        //GameObject ground = null;
 
         foreach (GameObject ground in groundPool.GetListGround())
         {
