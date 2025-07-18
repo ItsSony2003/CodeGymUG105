@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5468793790906604707}
-  - component: {fileID: 4932749205916848000}
+  - component: {fileID: -2372635021409569662}
   m_Layer: 0
-  m_Name: Ambulance
+  m_Name: Ambulance 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 1019398801269358596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4932749205916848000
+--- !u!114 &-2372635021409569662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5722522065255485699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fcc346ca144ad4c9211a304150bd60, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f42b3c1fc52d4d4294578b3df4e54d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
