@@ -1,0 +1,94 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class Player : MonoBehaviour
+{
+    public PlayerInputSet input { get; private set; }
+    public Vector2 moveInput { get; private set; }
+
+    public float moveDuration = 0.1f;
+    public float gridSize = 1f;
+
+    private bool isMoving = false;
+    private Vector3 targetPosition;
+
+    private void Awake()
+    {
+        input = new PlayerInputSet();
+    }
+
+    private void OnEnable() => input.Enable();
+    private void OnDisable() => input.Disable();
+
+    private void Start()
+    {
+        input.Player.Movement.performed += ctx =>
+        {
+            if (isMoving) return;
+
+            Vector2 rawInput = ctx.ReadValue<Vector2>();
+            Vector2 direction = Vector2.zero;
+
+            // Snap to one axis
+            if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
+                direction = new Vector2(Mathf.Sign(rawInput.x), 0);
+            else if (rawInput != Vector2.zero)
+                direction = new Vector2(0, Mathf.Sign(rawInput.y));
+
+            if (direction != Vector2.zero)
+                TryMove(direction);
+        };
+
+        input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+    }
+
+    private void TryMove(Vector2 direction)
+    {
+        if (isMoving) return;
+
+        // Get movement vector
+        Vector3 moveDir = new Vector3(direction.x, 0f, direction.y);
+        targetPosition = transform.position + moveDir * gridSize;
+
+        // Start smooth rotation and movement
+        StartCoroutine(RotateTowards(moveDir));
+        StartCoroutine(MoveToTarget());
+    }
+
+    private IEnumerator MoveToTarget()
+    {
+        isMoving = true;
+        Vector3 startPos = transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < moveDuration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPosition, elapsed / moveDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+        isMoving = false;
+    }
+
+    private IEnumerator RotateTowards(Vector3 direction)
+    {
+        if (direction == Vector3.zero) yield break;
+
+        Quaternion startRot = transform.rotation;
+        Quaternion targetRot = Quaternion.LookRotation(direction);
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            transform.rotation = Quaternion.Slerp(startRot, targetRot, t);
+            t += Time.deltaTime * 10f; // Adjust speed if needed
+            yield return null;
+        }
+
+        transform.rotation = targetRot;
+    }
+}
