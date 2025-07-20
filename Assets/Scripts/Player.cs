@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     public PlayerInputSet input { get; private set; }
     public Vector2 moveInput { get; private set; }
 
@@ -16,6 +17,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         input = new PlayerInputSet();
     }
 
@@ -70,7 +76,13 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
+        //Check ground limit
         transform.position = targetPosition;
+        if (Mathf.Abs(transform.position.z) >= GroundManager.Instance.limitRecenter)
+        {
+            GroundManager.Instance.RecenterMap();
+        }
+
         isMoving = false;
     }
 

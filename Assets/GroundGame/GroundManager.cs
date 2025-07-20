@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class GroundManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GroundManager : MonoBehaviour
 
     private GameObject groundHeihest;
 
+    public int limitRecenter = 100;
 
     private void OnEnable()
     {
@@ -36,7 +38,8 @@ public class GroundManager : MonoBehaviour
 
     public void newGround()
     {
-        if(groundHeihest == null)
+
+        if (groundHeihest == null)
         {
             groundHeihest = groundPool.GetObj();
             groundHeihest.transform.position = Vector3.zero;
@@ -46,26 +49,26 @@ public class GroundManager : MonoBehaviour
             Ground groundComp = groundHeihest.GetComponent<Ground>();
             groundHeihest = groundPool.GetObj();
             groundHeihest.transform.position = groundComp.spawnPos.transform.position;
-       
-
 
         }
     }
 
-    public void GetHighestGroundPos()
+    public void RecenterMap()
     {
-        float highestZ = float.MinValue;
+        Player playerController = Player.instance;
 
-        foreach (GameObject ground in groundPool.GetListGround())
+        Vector3 offset = playerController.transform.position;
+
+        playerController.transform.position -= offset;
+
+        foreach (GameObject tile in groundPool.GetUsingList())
         {
-            if (ground.activeInHierarchy && ground.transform.position.z > highestZ)
-            {
-                highestZ = ground.transform.position.z;
-
-                groundHeihest = ground;
-            }
+            tile.transform.position -= offset;
         }
 
+        foreach (GameObject tile in groundPool.GetListQueue())
+        {
+            tile.transform.position -= offset;
+        }
     }
-
 }

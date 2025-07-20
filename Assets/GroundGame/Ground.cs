@@ -20,9 +20,9 @@ public class Ground : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<Player>())
         {
-            
+            GroundManager.Instance.newGround();
         }
     }
 }
