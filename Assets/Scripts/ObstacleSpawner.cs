@@ -3,7 +3,7 @@
 public class ObstacleSpawner : MonoBehaviour
 {
     public ObstacleSpawnPoint[] spawnPoints;   
-    public float spawnInterval = 2f;           
+    public float spawnInterval = 0.5f;           
 
     private float timer;
 
