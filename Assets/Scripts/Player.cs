@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private bool isMoving = false;
     private Vector3 targetPosition;
 
+    private bool isDead = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -48,6 +50,22 @@ public class Player : MonoBehaviour
         };
 
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+    }
+
+    private void Update()
+    {
+        Death();
+    }
+
+
+    private void Death()
+    {
+        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
+        {
+            isDead = true;
+            Debug.Log("Game End");
+            Time.timeScale = 0f;
+        }
     }
 
     private void TryMove(Vector2 direction)

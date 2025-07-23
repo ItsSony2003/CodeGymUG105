@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class CameraFollowScript : MonoBehaviour
 {
-    // target object
     public Transform targetObject;
-
-    // default distance between the target and the player
     public Vector3 cameraOffset;
-
-    // smooth the camera rotation
     public float smoothFactor = 0.7f;
 
-    // Start is called before the first frame update
+    public float zScrollSpeed = 2f; // how fast camera auto-moves forward
+
     void Start()
     {
         cameraOffset = transform.position - targetObject.transform.position;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
+        // Step 1: Move camera forward on Z over time
+        cameraOffset.z += zScrollSpeed * Time.deltaTime;
+
+        // Step 2: Follow player’s position + offset (which is now drifting forward)
         Vector3 newPosition = targetObject.transform.position + cameraOffset;
         transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
     }

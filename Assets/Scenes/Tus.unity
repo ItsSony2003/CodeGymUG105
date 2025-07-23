@@ -344,8 +344,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6082, y: 0.74, z: 0.928}
-  m_Center: {x: 0.01031, y: 0.4265, z: 0.33478}
+  m_Size: {x: 0.6082, y: 0.74, z: 0.9374}
+  m_Center: {x: 0.01031, y: 0.4265, z: 0.08102}
 --- !u!54 &729227527
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -632,6 +632,7 @@ MonoBehaviour:
   targetObject: {fileID: 729227524}
   cameraOffset: {x: 0, y: 0, z: 0}
   smoothFactor: 0.7
+  zScrollSpeed: 0.08
 --- !u!1 &750774717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a4a42f8afa667e84aaa029c4b8ebaa64, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.47
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a4a42f8afa667e84aaa029c4b8ebaa64, type: 3}
       propertyPath: m_LocalRotation.w
