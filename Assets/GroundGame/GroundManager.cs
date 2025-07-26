@@ -88,8 +88,7 @@ public class GroundManager : MonoBehaviour
             groundPool.objPrefabs = currentGTheme.groundPrefabs;
             groundPool.ResetPool();
         }
-        Debug.Log(currentGTheme);
-
+        
     }
 
     public void newGround()
