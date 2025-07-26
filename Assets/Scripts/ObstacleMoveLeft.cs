@@ -21,7 +21,7 @@ public class ObstacleMoveLeft : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
-            Debug.Log($"🔻 {gameObject.name} đã vào vùng DisableObstacle → tắt object.");
+            //Debug.Log($"🔻 {gameObject.name} đã vào vùng DisableObstacle → tắt object.");
             gameObject.SetActive(false);
         }
     }
