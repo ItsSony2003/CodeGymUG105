@@ -14,11 +14,11 @@ public class DisableOnExit : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{gameObject.name} exited trigger with {other.name}");
+        //Debug.Log($"{gameObject.name} exited trigger with {other.name}");
 
         if (other.CompareTag("Ground"))
         {
-            Debug.Log($"Disabling {gameObject.name}");
+            //Debug.Log($"Disabling {gameObject.name}");
             gameObject.SetActive(false);
         }
     }

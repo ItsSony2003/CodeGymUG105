@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: RoadTheme
   m_EditorClassIdentifier: 
   themeName: 
-  groundPrefabs: []
+  groundPrefabs:
+  - {fileID: 84531170484784482, guid: c30577759ae3d9d40b582421af3ae859, type: 3}
+  - {fileID: 84531170484784482, guid: cfdb59f7ee10ef149bcb6411bf0ce9c0, type: 3}
+  - {fileID: 84531170484784482, guid: 90c5caea5498acf41be9a2cd03f0fbdb, type: 3}
   amount: 0

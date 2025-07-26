@@ -73,7 +73,7 @@ public class GroundManager : MonoBehaviour
 
     public void ChangeTheme()
     {
-        int randIndex = Random.Range(4, 10);
+        int randIndex = Random.Range(4, 7);
         amountPrefabOfTheme = randIndex;
 
         GroundTheme newTheme;
@@ -82,8 +82,14 @@ public class GroundManager : MonoBehaviour
             newTheme = listGTheme[Random.Range(0, listGTheme.Count)];
         }
         while (newTheme == currentGTheme);
-
         currentGTheme = newTheme;
+        if (groundPool != null)
+        {
+            groundPool.objPrefabs = currentGTheme.groundPrefabs;
+            groundPool.ResetPool();
+        }
+        Debug.Log(currentGTheme);
+
     }
 
     public void newGround()

@@ -23,6 +23,13 @@ public class ObjectPool : MonoBehaviour
 
         this.poolSize = poolSize;
 
+        ResetPool();
+    }
+
+    public void ResetPool()
+    {
+        poolQueue.Clear();
+
         for (int i = 0; i < this.poolSize; i++)
         {
             int randomIndex = Random.Range(0, objPrefabs.Count);

@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: DesertTheme
   m_EditorClassIdentifier: 
   themeName: 
-  groundPrefabs: []
+  groundPrefabs:
+  - {fileID: 84531170484784482, guid: 122a146ffe4a7410794cdeef9729ee43, type: 3}
+  - {fileID: 84531170484784482, guid: 0b61dc3b4fd73487283d07618d6e33b4, type: 3}
+  - {fileID: 84531170484784482, guid: 2033507a4cbaa465d84e742aff19da17, type: 3}
   amount: 0
