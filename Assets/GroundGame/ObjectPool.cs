@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +22,13 @@ public class ObjectPool : MonoBehaviour
         if (poolQueue == null && objPrefabs == null) return;
 
         this.poolSize = poolSize;
+
+        ResetPool();
+    }
+
+    public void ResetPool()
+    {
+        poolQueue.Clear();
 
         for (int i = 0; i < this.poolSize; i++)
         {
@@ -64,6 +71,52 @@ public class ObjectPool : MonoBehaviour
         usingObjList.Remove(obj);
         poolQueue.Enqueue(obj);
     }
+    //Lấy GameObject tương ứng
+    public GameObject GetObjFromPrefab(GameObject targetPrefab)
+    {
+        foreach (var obj in usingObjList)
+        {
+            if (!obj.activeInHierarchy && obj.name.Contains(targetPrefab.name))
+            {
+                usingObjList.Add(obj);
+                return obj;
+            }
+        }
+
+        foreach (var obj in poolQueue)
+        {
+            if (obj.name.Contains(targetPrefab.name))
+            {
+                poolQueue = new Queue<GameObject>(poolQueue); 
+                GameObject match = null;
+
+                foreach (var q in poolQueue)
+                {
+                    if (q.name.Contains(targetPrefab.name))
+                    {
+                        match = q;
+                        break;
+                    }
+                }
+
+                if (match != null)
+                {
+                    poolQueue = new Queue<GameObject>(poolQueue); 
+                    poolQueue = new Queue<GameObject>(poolQueue); 
+                    poolQueue = new Queue<GameObject>(poolQueue);
+                    poolQueue.Dequeue(); 
+                    match.SetActive(true);
+                    usingObjList.Add(match);
+                    return match;
+                }
+            }
+        }
+
+        GameObject newObj = Instantiate(targetPrefab);
+        newObj.SetActive(true);
+        usingObjList.Add(newObj);
+        return newObj;
+    }
 
     public Queue<GameObject> GetListQueue()
     {
@@ -74,4 +127,10 @@ public class ObjectPool : MonoBehaviour
     { 
         return usingObjList;
     }
+    public GameObject[] GetPrefabsArray()
+    {
+        return objPrefabs.ToArray();
+    }
+
+
 }

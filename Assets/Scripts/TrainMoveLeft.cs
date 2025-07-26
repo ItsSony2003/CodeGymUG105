@@ -2,7 +2,7 @@
 
 public class TrainMoveLeft : VehicleMoveLeft
 {
-    public float speedMultiplier = 4f; // tốc độ tàu nhanh gấp đôi
+    public float speedMultiplier = 4f; 
 
     void Update()
     {
