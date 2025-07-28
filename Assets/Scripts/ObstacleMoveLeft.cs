@@ -9,20 +9,13 @@ public class ObstacleMoveLeft : MonoBehaviour
         transform.Translate(Vector3.left * config.speed * Time.deltaTime, Space.World);
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Ground"))
-    //    {
-    //        Debug.Log($"🔻 {gameObject.name} đã ra khỏi vùng DisableObstacle → tắt object.");
-    //        gameObject.SetActive(false);
-    //    }
-    //}
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Ground"))
         {
-            //Debug.Log($"🔻 {gameObject.name} đã vào vùng DisableObstacle → tắt object.");
             gameObject.SetActive(false);
         }
     }
+
+
 }
