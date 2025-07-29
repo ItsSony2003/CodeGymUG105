@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Vector3 targetPosition;
 
     private bool isDead = false;
+    public static bool gameStarted = false;
 
     private void Awake()
     {
@@ -32,24 +33,48 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        //input.Player.Movement.performed += ctx =>
+        //{
+        //    if (isMoving) return;
+
+        //    Vector2 rawInput = ctx.ReadValue<Vector2>();
+        //    Vector2 direction = Vector2.zero;
+
+        //    // Snap to one axis
+        //    if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
+        //        direction = new Vector2(Mathf.Sign(rawInput.x), 0);
+        //    else if (rawInput != Vector2.zero)
+        //        direction = new Vector2(0, Mathf.Sign(rawInput.y));
+
+        //    if (direction != Vector2.zero)
+        //        TryMove(direction);
+        //};
+
+        //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+
         input.Player.Movement.performed += ctx =>
         {
-            if (isMoving) return;
-
             Vector2 rawInput = ctx.ReadValue<Vector2>();
             Vector2 direction = Vector2.zero;
 
-            // Snap to one axis
+            // Snap input to axis
             if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
                 direction = new Vector2(Mathf.Sign(rawInput.x), 0);
             else if (rawInput != Vector2.zero)
                 direction = new Vector2(0, Mathf.Sign(rawInput.y));
 
-            if (direction != Vector2.zero)
-                TryMove(direction);
-        };
+            // START THE GAME only if pressing forward (W or up)
+            if (!gameStarted && direction == Vector2.up)
+            {
+                gameStarted = true;
+                CameraFollowScript.lastPlayerMoveTime = Time.time;
+            }
 
-        input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+            if (!gameStarted || isMoving || direction == Vector2.zero)
+                return;
+
+            TryMove(direction);
+        };
     }
 
     private void Update()
@@ -71,6 +96,9 @@ public class Player : MonoBehaviour
     private void TryMove(Vector2 direction)
     {
         if (isMoving) return;
+
+        // Get Player last move input
+        CameraFollowScript.lastPlayerMoveTime = Time.time;
 
         // Get movement vector
         Vector3 moveDir = new Vector3(direction.x, 0f, direction.y);
