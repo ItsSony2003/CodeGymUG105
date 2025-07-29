@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //input.Player.Movement.performed += ctx =>
+        /*//input.Player.Movement.performed += ctx =>
         //{
         //    if (isMoving) return;
 
@@ -50,18 +51,22 @@ public class Player : MonoBehaviour
         //        TryMove(direction);
         //};
 
-        //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+        //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;*/
 
         input.Player.Movement.performed += ctx =>
-        {
+        {   
             Vector2 rawInput = ctx.ReadValue<Vector2>();
             Vector2 direction = Vector2.zero;
 
             // Snap input to axis
             if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
+            {
                 direction = new Vector2(Mathf.Sign(rawInput.x), 0);
+            }
             else if (rawInput != Vector2.zero)
+            {
                 direction = new Vector2(0, Mathf.Sign(rawInput.y));
+            }
 
             // START THE GAME only if pressing forward (W or up)
             if (!gameStarted && direction == Vector2.up)
@@ -69,6 +74,12 @@ public class Player : MonoBehaviour
                 gameStarted = true;
                 CameraFollowScript.lastPlayerMoveTime = Time.time;
             }
+
+            /*if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f))
+            {
+                Debug.LogWarning("co vat phia truoc: " + hit.collider.name);
+                return;
+            }*/
 
             if (!gameStarted || isMoving || direction == Vector2.zero)
                 return;
@@ -120,13 +131,6 @@ public class Player : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, targetPosition, elapsed / moveDuration);
             elapsed += Time.deltaTime;
             yield return null;
-        }
-
-        //Check ground limit
-        transform.position = targetPosition;
-        if (Mathf.Abs(transform.position.z) >= GroundManager.Instance.limitRecenter)
-        {
-            GroundManager.Instance.RecenterMap();
         }
 
         isMoving = false;
