@@ -265,7 +265,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 8}
+  m_Size: {x: 0.8, y: 1, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1544840123068542788
 GameObject:
@@ -1445,7 +1445,7 @@ GameObject:
   - component: {fileID: 9155760229071679276}
   - component: {fileID: 2377957320668319196}
   - component: {fileID: 913205481057508157}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Disable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
