@@ -95,19 +95,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Death();
+        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
+        {
+            Death();
+        }
     }
 
 
     private void Death()
     {
-        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
-        {
-            isDead = true;
-            Debug.Log("Game End");
-            Time.timeScale = 0f;
-            UIManager.instance.loseGameUi.SetActive(true);
-        }
+        isDead = true;
+        Debug.Log("Game End");
+        Time.timeScale = 0f;
+        UIManager.instance.loseGameUi.SetActive(true);
     }
 
     private void TryMove(Vector2 direction)
@@ -139,9 +139,6 @@ public class Player : MonoBehaviour
         }
         transform.position = targetPosition;
 
-        Debug.Log(transform.position);
-
-
         isMoving = false;
     }
 
@@ -161,5 +158,13 @@ public class Player : MonoBehaviour
         }
 
         transform.rotation = targetRot;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Death();
+        }
     }
 }
