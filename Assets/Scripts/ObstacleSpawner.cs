@@ -114,8 +114,11 @@ public class ObstacleSpawner : MonoBehaviour
             GameObject pooledObj = pool.GetObjFromPrefab(prefabToSpawn);
             if (pooledObj != null)
             {
+                prefabToSpawn.transform.rotation = spawn.spawnPoint.rotation;
+
                 pooledObj.transform.position = spawn.spawnPoint.position;
-                pooledObj.transform.rotation = prefabToSpawn.transform.rotation;
+
+                Debug.Log(prefabToSpawn.transform.rotation + " ?? " + spawn.spawnPoint.transform.rotation);
                 pooledObj.SetActive(true);
             }
         }
