@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1505069321855877741}
   - component: {fileID: 2315910149519394185}
   - component: {fileID: 1548694372027544971}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WhiteVehicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3023569620020328212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.6, y: 0.5652, z: 4.991}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95,7 +95,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8403949258073987845
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4302092442536818230}
   - component: {fileID: 469713215178904072}
   - component: {fileID: 2519387115433379413}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: White
   m_TagString: Untagged
   m_Icon: {fileID: 0}

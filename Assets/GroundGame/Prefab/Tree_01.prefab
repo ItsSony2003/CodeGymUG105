@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1613488599438407987}
   - component: {fileID: -5056529073507698967}
   - component: {fileID: 8026349953291897542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 8883490841564937813}
   - component: {fileID: 9016838564958777695}
   - component: {fileID: 8495813678790828600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh1_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3745833047282617402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: roadTile_019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 604197440302083081}
   - component: {fileID: 330159364722079311}
   - component: {fileID: 8731196389259267155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
