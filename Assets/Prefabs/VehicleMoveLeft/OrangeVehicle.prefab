@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3858636675471534686}
   - component: {fileID: 8852224590951928137}
   - component: {fileID: 1727720213595227226}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7650644698045926758}
   - component: {fileID: 2299916314275363785}
   - component: {fileID: 4617310042967509837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OrangeVehicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 5948789454794969888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.92, y: 0.5652, z: 4.99}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -177,5 +177,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0.3, z: 0}

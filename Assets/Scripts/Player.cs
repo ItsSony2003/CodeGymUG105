@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
 
         //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;*/
 
+        int obstacleLayer = LayerMask.GetMask("Obstacle");
+
         input.Player.Movement.performed += ctx =>
         {   
             Vector2 rawInput = ctx.ReadValue<Vector2>();
@@ -75,11 +77,14 @@ public class Player : MonoBehaviour
                 CameraFollowScript.lastPlayerMoveTime = Time.time;
             }
 
-            /*if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f))
+            Vector3 origin = transform.position + Vector3.up * 0.5f;
+            Vector3 rayDirection = new Vector3(direction.x, 0, direction.y);
+
+            if (Physics.Raycast(origin, rayDirection, out RaycastHit hit, 1f, obstacleLayer))
             {
-                Debug.LogWarning("co vat phia truoc: " + hit.collider.name);
                 return;
-            }*/
+            }
+
 
             if (!gameStarted || isMoving || direction == Vector2.zero)
                 return;
@@ -101,6 +106,7 @@ public class Player : MonoBehaviour
             isDead = true;
             Debug.Log("Game End");
             Time.timeScale = 0f;
+            UIManager.instance.loseGameUi.SetActive(true);
         }
     }
 
@@ -114,7 +120,6 @@ public class Player : MonoBehaviour
         // Get movement vector
         Vector3 moveDir = new Vector3(direction.x, 0f, direction.y);
         targetPosition = transform.position + moveDir * gridSize;
-
         // Start smooth rotation and movement
         StartCoroutine(RotateTowards(moveDir));
         StartCoroutine(MoveToTarget());
@@ -132,6 +137,10 @@ public class Player : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+        transform.position = targetPosition;
+
+        Debug.Log(transform.position);
+
 
         isMoving = false;
     }
