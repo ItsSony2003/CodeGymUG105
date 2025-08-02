@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1613488599438407987}
   - component: {fileID: -5056529073507698967}
   - component: {fileID: 8026349953291897542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 8883490841564937813}
   - component: {fileID: 9016838564958777695}
   - component: {fileID: 8495813678790828600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh1_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,8 +97,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.03, y: 0.172, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3745833047282617402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,7 +109,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5910102879903206374}
-  m_Mesh: {fileID: 3842199439719177302, guid: a6c58c90ca907204b83d191d7c88b74e, type: 3}
+  m_Mesh: {fileID: 8239390232501668674, guid: f1553a6068e11de43b540112eb800309, type: 3}
 --- !u!23 &8495813678790828600
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130,8 +130,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3502426598262019617, guid: 520e1a5c7782137449a6664b342e0bc1, type: 3}
-  - {fileID: -2993084100047275962, guid: 520e1a5c7782137449a6664b342e0bc1, type: 3}
+  - {fileID: -6538903991835684241, guid: f1553a6068e11de43b540112eb800309, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3745833047282617402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: roadTile_019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +196,7 @@ GameObject:
   - component: {fileID: 604197440302083081}
   - component: {fileID: 330159364722079311}
   - component: {fileID: 8731196389259267155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

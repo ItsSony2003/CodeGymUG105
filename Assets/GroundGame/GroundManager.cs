@@ -110,25 +110,4 @@ public class GroundManager : MonoBehaviour
         amountPrefabOfTheme -= 1;
         
     }
-
-
-
-    public void RecenterMap()
-    {
-        Player playerController = Player.instance;
-
-        Vector3 offset = playerController.transform.position;
-
-        playerController.transform.position -= offset;
-
-        foreach (GameObject tile in groundPool.GetUsingList())
-        {
-            tile.transform.position -= offset;
-        }
-
-        foreach (GameObject tile in groundPool.GetListQueue())
-        {
-            tile.transform.position -= offset;
-        }
-    }
 }

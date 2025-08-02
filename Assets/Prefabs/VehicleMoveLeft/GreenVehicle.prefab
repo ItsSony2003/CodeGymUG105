@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3579238222726559649}
   - component: {fileID: 7535213325352300351}
   - component: {fileID: 4060890943787674725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GreenVehicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425196884293183330}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -7.1216, y: 0.4935, z: 1.05}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -91,12 +91,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0322928, y: 0.51507676, z: 1}
-  m_Center: {x: 0.016146421, y: 0.32473415, z: 0}
+  m_Size: {x: 0.5, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1355698945184907981
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 3123627872696979722}
   - component: {fileID: 3716934389228961975}
   - component: {fileID: 2453848825205183307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,13 +123,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355698945184907981}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 0.16126613, y: 0.2464, z: 0.16998713}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2635098335896490786}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3716934389228961975
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 7509603149644635178}
   - component: {fileID: 2390144634362971599}
   - component: {fileID: 8513048360920184515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Disable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,8 +232,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0076795, y: 0.5516146, z: 0.44274855}
-  m_Center: {x: 0.03542781, y: 0.2690203, z: -0.0069396496}
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8513048360920184515
 MonoBehaviour:
   m_ObjectHideFlags: 0

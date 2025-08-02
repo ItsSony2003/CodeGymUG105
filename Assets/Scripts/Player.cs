@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //input.Player.Movement.performed += ctx =>
+        /*//input.Player.Movement.performed += ctx =>
         //{
         //    if (isMoving) return;
 
@@ -50,18 +50,24 @@ public class Player : MonoBehaviour
         //        TryMove(direction);
         //};
 
-        //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+        //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;*/
+
+        int obstacleLayer = LayerMask.GetMask("Obstacle");
 
         input.Player.Movement.performed += ctx =>
-        {
+        {   
             Vector2 rawInput = ctx.ReadValue<Vector2>();
             Vector2 direction = Vector2.zero;
 
             // Snap input to axis
             if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
+            {
                 direction = new Vector2(Mathf.Sign(rawInput.x), 0);
+            }
             else if (rawInput != Vector2.zero)
+            {
                 direction = new Vector2(0, Mathf.Sign(rawInput.y));
+            }
 
             // START THE GAME only if pressing forward (W or up)
             if (!gameStarted && direction == Vector2.up)
@@ -69,6 +75,15 @@ public class Player : MonoBehaviour
                 gameStarted = true;
                 CameraFollowScript.lastPlayerMoveTime = Time.time;
             }
+
+            Vector3 origin = transform.position + Vector3.up * 0.5f;
+            Vector3 rayDirection = new Vector3(direction.x, 0, direction.y);
+
+            if (Physics.Raycast(origin, rayDirection, out RaycastHit hit, 1f, obstacleLayer))
+            {
+                return;
+            }
+
 
             if (!gameStarted || isMoving || direction == Vector2.zero)
                 return;
@@ -79,18 +94,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Death();
+        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
+        {
+            Death();
+        }
     }
 
 
     private void Death()
     {
-        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
-        {
-            isDead = true;
-            Debug.Log("Game End");
-            Time.timeScale = 0f;
-        }
+        isDead = true;
+        Debug.Log("Game End");
+        Time.timeScale = 0f;
+        UIManager.instance.loseGameUi.SetActive(true);
     }
 
     private void TryMove(Vector2 direction)
@@ -103,7 +119,6 @@ public class Player : MonoBehaviour
         // Get movement vector
         Vector3 moveDir = new Vector3(direction.x, 0f, direction.y);
         targetPosition = transform.position + moveDir * gridSize;
-
         // Start smooth rotation and movement
         StartCoroutine(RotateTowards(moveDir));
         StartCoroutine(MoveToTarget());
@@ -121,13 +136,7 @@ public class Player : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        //Check ground limit
         transform.position = targetPosition;
-        if (Mathf.Abs(transform.position.z) >= GroundManager.Instance.limitRecenter)
-        {
-            GroundManager.Instance.RecenterMap();
-        }
 
         isMoving = false;
     }
@@ -148,5 +157,13 @@ public class Player : MonoBehaviour
         }
 
         transform.rotation = targetRot;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Death();
+        }
     }
 }

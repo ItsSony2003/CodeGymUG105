@@ -21,8 +21,6 @@ public class ObjectPool : MonoBehaviour
 
         if (poolQueue == null && objPrefabs == null) return;
 
-        this.poolSize = poolSize;
-
         ResetPool();
     }
 
