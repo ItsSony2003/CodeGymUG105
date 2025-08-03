@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //*Dequeue : lay khua dau tien trong queue
 //*Enqueue : dua vao cuoi queue
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPoolObtac : MonoBehaviour
 {
-    public GameObject objPrefabs;
+    public List<GameObject> objPrefabs;
     public int poolSize = 10;
     private Queue<GameObject> poolQueue;
 
@@ -20,22 +20,30 @@ public class ObjectPool : MonoBehaviour
         usingObjList = new List<GameObject>();
 
         if (poolQueue == null && objPrefabs == null) return;
+
+        ResetPool();
     }
 
-
-    public void GeneratePool()
+    public void ResetPool()
     {
-        GameObject obj = Instantiate(objPrefabs);
-        obj.transform.parent = transform;
-        obj.SetActive(false);
-        poolQueue.Enqueue(obj);
+        poolQueue.Clear();
+
+        for (int i = 0; i < this.poolSize; i++)
+        {
+            int randomIndex = Random.Range(0, objPrefabs.Count);
+            GameObject obj = Instantiate(objPrefabs[randomIndex]);
+            obj.transform.parent = transform;
+            obj.SetActive(false);
+            poolQueue.Enqueue(obj);
+        }
     }
 
     public GameObject GetObj()
     {
-        if (usingObjList.Count >= 10)
+        if (usingObjList.Count >= poolSize)
         {
             GameObject objToReturn = usingObjList[0];
+            usingObjList.RemoveAt(0);
             ReturnObj(objToReturn);
         }
 
@@ -48,7 +56,8 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(objPrefabs);
+            int randomIndex = Random.Range(0, objPrefabs.Count);
+            GameObject obj = Instantiate(objPrefabs[randomIndex]);
             usingObjList.Add(obj);
             return obj;
         }
@@ -60,8 +69,7 @@ public class ObjectPool : MonoBehaviour
         usingObjList.Remove(obj);
         poolQueue.Enqueue(obj);
     }
-
-    ////Lấy GameObject tương ứng
+    //Lấy GameObject tương ứng
     public GameObject GetObjFromPrefab(GameObject targetPrefab)
     {
         foreach (var obj in usingObjList)
@@ -113,15 +121,13 @@ public class ObjectPool : MonoBehaviour
         return poolQueue;
     }
 
-    public List<GameObject> GetUsingList() 
-    { 
+    public List<GameObject> GetUsingList()
+    {
         return usingObjList;
     }
-
     public GameObject[] GetPrefabsArray()
     {
-        return usingObjList.ToArray();
-;
+        return objPrefabs.ToArray();
     }
 
 

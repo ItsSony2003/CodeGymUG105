@@ -104,9 +104,7 @@ public class Player : MonoBehaviour
     private void Death()
     {
         isDead = true;
-        Debug.Log("Game End");
-        Time.timeScale = 0f;
-        UIManager.instance.loseGameUi.SetActive(true);
+        GameManager.instance.EndGame();
     }
 
     private void TryMove(Vector2 direction)

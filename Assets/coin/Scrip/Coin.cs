@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    public Transform spawnPos;
-    public Transform center;
-    bool hasCrossed = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,17 +13,15 @@ public class Ground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(Vector3.up * 30f * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasCrossed) return;
-
-        if (other.GetComponent<Player>())
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            GroundManager.Instance.newGround();
-            hasCrossed = true;
+            gameObject.SetActive(false);
+            GameManager.instance.AddCoin();
         }
     }
 }
