@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3851514005849835204}
   - component: {fileID: 7155164590528406084}
   m_Layer: 0
-  m_Name: Ground_05
+  m_Name: Ground_Desert_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {fileID: 1015956457214047267}
+  center: {fileID: 4100190367191091552}
 --- !u!1 &4406488099430425395
 GameObject:
   m_ObjectHideFlags: 0
