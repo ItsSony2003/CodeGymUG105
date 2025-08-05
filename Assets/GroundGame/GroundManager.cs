@@ -120,6 +120,13 @@ public class GroundManager : MonoBehaviour
         CheckChangeTheme();
 
         GameObject newGroundObj = pools.GetObj();
+
+        if (pools.usingObjList.Count >= 10)
+        {
+            GameObject objToReturn = pools.usingObjList[0];
+            pools.ReturnObj(objToReturn);
+        }
+
         newGroundObj.transform.SetParent(transform);
 
         if (groundHighest == null)
@@ -134,8 +141,8 @@ public class GroundManager : MonoBehaviour
 
         groundHighest = newGroundObj;
 
-//      Ground newGroundComp = newGroundObj.GetComponent<Ground>();
-//      SpawnCoinMachine.instance.SpawnCoinOnGround(newGroundObj, newGroundComp.center);
+        Ground newGroundComp = newGroundObj.GetComponent<Ground>();
+        SpawnCoinMachine.instance.SpawnCoinOnGround(newGroundObj, newGroundComp.center);
 
         amountPrefabOfTheme -= 1;
     }

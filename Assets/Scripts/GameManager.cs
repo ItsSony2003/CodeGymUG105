@@ -55,5 +55,6 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         score += 1;
+        UIManager.instance.SetScoreInGame(score);
     }
 }

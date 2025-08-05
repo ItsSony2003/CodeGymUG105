@@ -28,6 +28,7 @@ public class Ground : MonoBehaviour
         {
             GroundManager.Instance.newGround();
             hasCrossed = true;
+
         }
     }
 }
