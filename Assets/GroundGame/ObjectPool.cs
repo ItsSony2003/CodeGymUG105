@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     public int poolSize = 10;
     private Queue<GameObject> poolQueue;
 
-    private List<GameObject> usingObjList;
+    public List<GameObject> usingObjList;
 
 
     private void Awake()
@@ -33,12 +33,6 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject GetObj()
     {
-        if (usingObjList.Count >= 10)
-        {
-            GameObject objToReturn = usingObjList[0];
-            ReturnObj(objToReturn);
-        }
-
         if (poolQueue.Count > 0)
         {
             GameObject obj = poolQueue.Dequeue();

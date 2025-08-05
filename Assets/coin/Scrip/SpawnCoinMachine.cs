@@ -22,31 +22,44 @@ public class SpawnCoinMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     public void SpawnCoinOnGround(GameObject ground, Transform center)
     {
         int numberSpawn = Random.Range(1, 4);
 
-        Vector3 groundCenter = center.transform.position;
+        Vector3 groundCenter = center.position;
 
-        int groundSizeWidth = 19;
+        int groundSizeWidth = 13;
         int groundSizeDepth = 11;
 
-        for(int i = 0; i <= numberSpawn;)
+        int spawned = 0;
+        int maxAttempt = 20;
+
+        if (coinPool.usingObjList.Count >= 20)
+        {
+            GameObject objToReturn = coinPool.usingObjList[0];
+            coinPool.ReturnObj(objToReturn);
+        }
+
+        while (spawned < numberSpawn && maxAttempt > 0)
         {
             int randomX = Random.Range(-groundSizeWidth / 2, groundSizeWidth / 2);
             int randomZ = Random.Range(-groundSizeDepth / 2, groundSizeDepth / 2);
 
-            Vector3 newPos = new Vector3(groundCenter.x + randomX, 1 , groundCenter.z + randomZ);
+            Vector3 newPos = new Vector3(groundCenter.x + randomX, 1, groundCenter.z + randomZ);
 
             if (CanSpawnCoinInHere(newPos))
             {
-                coinPool.GetObj().transform.position = newPos;
-                i++;
+                GameObject coin = coinPool.GetObj();
+                coin.transform.SetParent(transform);
+                coin.transform.position = newPos;
+
+                spawned++;
             }
 
+            maxAttempt--;
         }
     }
 
@@ -59,8 +72,6 @@ public class SpawnCoinMachine : MonoBehaviour
 
         if (hasObject)
         {
-            Debug.Log("Có vật cản ở đây!");
-
             return false;
         }
 

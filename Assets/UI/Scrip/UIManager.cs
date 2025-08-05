@@ -58,4 +58,10 @@ public class UIManager : MonoBehaviour
     Application.Quit();
 #endif
     }
+
+    public void SetScoreInGame(int numScore)
+    {
+        UiInGame UiInGameComp = inGameUi.GetComponent<UiInGame>();
+        UiInGameComp.SetScore(numScore);
+    }
 }
