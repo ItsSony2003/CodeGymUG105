@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class ParticleConfig
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected string codeName;
+    protected float delayTime;
+    public GameObject puzzle;
 }

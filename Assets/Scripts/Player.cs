@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour
+public class Player : AIBase
 {
     public static Player instance;
     public PlayerInputSet input { get; private set; }
