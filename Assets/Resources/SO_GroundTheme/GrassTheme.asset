@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ea69ae066964be5b9de097e5dda2db, type: 3}
   m_Name: GrassTheme
   m_EditorClassIdentifier: 
-  themeName: GrassBegin
+  themeName: GrassTheme
   groundPrefabs:
   - {fileID: 84531170484784482, guid: c30577759ae3d9d40b582421af3ae859, type: 3}
   - {fileID: 84531170484784482, guid: cfdb59f7ee10ef149bcb6411bf0ce9c0, type: 3}

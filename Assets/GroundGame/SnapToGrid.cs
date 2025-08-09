@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnapToGrid : MonoBehaviour
 {
-    public float gridSize = 3f;
+    public float gridSize = 1f;
     // Start is called before the first frame update
 
     private Material objectMaterial;
