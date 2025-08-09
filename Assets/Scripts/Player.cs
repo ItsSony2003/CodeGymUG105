@@ -33,25 +33,6 @@ public class Player : AIBase
 
     private void Start()
     {
-        /*//input.Player.Movement.performed += ctx =>
-        //{
-        //    if (isMoving) return;
-
-        //    Vector2 rawInput = ctx.ReadValue<Vector2>();
-        //    Vector2 direction = Vector2.zero;
-
-        //    // Snap to one axis
-        //    if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
-        //        direction = new Vector2(Mathf.Sign(rawInput.x), 0);
-        //    else if (rawInput != Vector2.zero)
-        //        direction = new Vector2(0, Mathf.Sign(rawInput.y));
-
-        //    if (direction != Vector2.zero)
-        //        TryMove(direction);
-        //};
-
-        //input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;*/
-
         int obstacleLayer = LayerMask.GetMask("Obstacle");
 
         input.Player.Movement.performed += ctx =>
@@ -111,13 +92,18 @@ public class Player : AIBase
     {
         if (isMoving) return;
 
-        // Get Player last move input
-        CameraFollowScript.lastPlayerMoveTime = Time.time;
+        // If moving forward (W), reset the scroll timer
+        if (direction == Vector2.up)
+        {
+            CameraFollowScript.lastPlayerMoveTime = Time.time;
+        }
+        // If moving A / S / D, do nothing with lastPlayerMoveTime
+        // so scroll continues normally
 
-        // Get movement vector
+        // Movement logic
         Vector3 moveDir = new Vector3(direction.x, 0f, direction.y);
         targetPosition = transform.position + moveDir * gridSize;
-        // Start smooth rotation and movement
+
         StartCoroutine(RotateTowards(moveDir));
         StartCoroutine(MoveToTarget());
     }
