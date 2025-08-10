@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillBase
-{
+{ 
     protected AIBase owner;
+    public SkillConfig skillConfig;
     protected List<EffectBase> effects;
+
 
     public virtual void PlaySkill()
     {
@@ -13,6 +15,11 @@ public class SkillBase
     }
 
     public virtual void StopSkill()
+    {
+
+    }
+
+    public virtual void Tick()
     {
 
     }

@@ -93,7 +93,7 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 GameObject[] candidatePrefabs = spawn.obstaclePrefabs;
 
-                // Nếu chưa gán danh sách prefab, tự lấy từ ObjectPool
+                //// Nếu chưa gán danh sách prefab, tự lấy từ ObjectPool
                 if (candidatePrefabs != null && candidatePrefabs.Length == 0)
                 {
                     candidatePrefabs = pool.GetPrefabsArray();

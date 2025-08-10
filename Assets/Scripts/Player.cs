@@ -151,3 +151,13 @@ public class Player : AIBase
         }
     }
 }
+
+public class PlayerConfig : RoleConfig
+{
+    public PlayerConfig()
+    {
+        codeName = "Player";
+        skills = new List<string>();
+        skills.Add("Magnet");
+    }
+}
