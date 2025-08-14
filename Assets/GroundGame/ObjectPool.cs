@@ -7,11 +7,12 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public List<GameObject> objPrefabs;
+    public GameObject objPrefabs;
     public int poolSize = 10;
     private Queue<GameObject> poolQueue;
+    public GameObject currentItem;
 
-    private List<GameObject> usingObjList;
+    public List<GameObject> usingObjList;
 
 
     private void Awake()
@@ -20,49 +21,34 @@ public class ObjectPool : MonoBehaviour
         usingObjList = new List<GameObject>();
 
         if (poolQueue == null && objPrefabs == null) return;
-
-        this.poolSize = poolSize;
-
-        ResetPool();
     }
 
-    public void ResetPool()
-    {
-        poolQueue.Clear();
 
-        for (int i = 0; i < this.poolSize; i++)
-        {
-            int randomIndex = Random.Range(0, objPrefabs.Count);
-            GameObject obj = Instantiate(objPrefabs[randomIndex]);
-            obj.transform.parent = transform;
-            obj.SetActive(false);
-            poolQueue.Enqueue(obj);
-        }
+    public void GeneratePool()
+    {
+        GameObject obj = Instantiate(objPrefabs);
+        obj.transform.parent = transform;
+        obj.SetActive(false);
+        poolQueue.Enqueue(obj);
     }
 
     public GameObject GetObj()
     {
-        if (usingObjList.Count >= poolSize)
-        {
-            GameObject objToReturn = usingObjList[0];
-            usingObjList.RemoveAt(0);
-            ReturnObj(objToReturn);
-        }
-
         if (poolQueue.Count > 0)
         {
             GameObject obj = poolQueue.Dequeue();
             obj.SetActive(true);
             usingObjList.Add(obj);
+            currentItem = obj;
             return obj;
         }
         else
         {
-            int randomIndex = Random.Range(0, objPrefabs.Count);
-            GameObject obj = Instantiate(objPrefabs[randomIndex]);
+            GameObject obj = Instantiate(objPrefabs);
             usingObjList.Add(obj);
             return obj;
         }
+
     }
 
     public void ReturnObj(GameObject obj)
@@ -71,7 +57,8 @@ public class ObjectPool : MonoBehaviour
         usingObjList.Remove(obj);
         poolQueue.Enqueue(obj);
     }
-    //Lấy GameObject tương ứng
+
+    ////Lấy GameObject tương ứng
     public GameObject GetObjFromPrefab(GameObject targetPrefab)
     {
         foreach (var obj in usingObjList)
@@ -87,7 +74,7 @@ public class ObjectPool : MonoBehaviour
         {
             if (obj.name.Contains(targetPrefab.name))
             {
-                poolQueue = new Queue<GameObject>(poolQueue); 
+                poolQueue = new Queue<GameObject>(poolQueue);
                 GameObject match = null;
 
                 foreach (var q in poolQueue)
@@ -101,10 +88,10 @@ public class ObjectPool : MonoBehaviour
 
                 if (match != null)
                 {
-                    poolQueue = new Queue<GameObject>(poolQueue); 
-                    poolQueue = new Queue<GameObject>(poolQueue); 
                     poolQueue = new Queue<GameObject>(poolQueue);
-                    poolQueue.Dequeue(); 
+                    poolQueue = new Queue<GameObject>(poolQueue);
+                    poolQueue = new Queue<GameObject>(poolQueue);
+                    poolQueue.Dequeue();
                     match.SetActive(true);
                     usingObjList.Add(match);
                     return match;
@@ -127,9 +114,11 @@ public class ObjectPool : MonoBehaviour
     { 
         return usingObjList;
     }
+
     public GameObject[] GetPrefabsArray()
     {
-        return objPrefabs.ToArray();
+        return usingObjList.ToArray();
+;
     }
 
 

@@ -569,7 +569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 729227524}
   cameraOffset: {x: 0, y: 0, z: 0}
-  smoothFactor: 0.7
+  smoothFactor: 0.75
+  delayBeforeScroll: 1.5
   zScrollSpeed: 0.08
 --- !u!1 &948471073
 GameObject:

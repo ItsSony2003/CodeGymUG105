@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour
+public class Player : AIBase
 {
     public static Player instance;
     public PlayerInputSet input { get; private set; }
@@ -15,7 +15,11 @@ public class Player : MonoBehaviour
     private bool isMoving = false;
     private Vector3 targetPosition;
 
+    public bool immortal = false;
     private bool isDead = false;
+    public static bool gameStarted = false;
+
+    public SkillManager skillManager;
 
     private void Awake()
     {
@@ -25,6 +29,8 @@ public class Player : MonoBehaviour
         }
 
         input = new PlayerInputSet();
+
+        skillManager = GetComponent<SkillManager>();
     }
 
     private void OnEnable() => input.Enable();
@@ -32,51 +38,77 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        input.Player.Movement.performed += ctx =>
-        {
-            if (isMoving) return;
+        int obstacleLayer = LayerMask.GetMask("Obstacle");
 
+        input.Player.Movement.performed += ctx =>
+        {   
             Vector2 rawInput = ctx.ReadValue<Vector2>();
             Vector2 direction = Vector2.zero;
 
-            // Snap to one axis
+            // Snap input to axis
             if (Mathf.Abs(rawInput.x) > Mathf.Abs(rawInput.y))
+            {
                 direction = new Vector2(Mathf.Sign(rawInput.x), 0);
+            }
             else if (rawInput != Vector2.zero)
+            {
                 direction = new Vector2(0, Mathf.Sign(rawInput.y));
+            }
 
-            if (direction != Vector2.zero)
-                TryMove(direction);
+            // START THE GAME only if pressing forward (W or up)
+            if (!gameStarted && direction == Vector2.up)
+            {
+                gameStarted = true;
+                CameraFollowScript.lastPlayerMoveTime = Time.time;
+            }
+
+            Vector3 origin = transform.position + Vector3.up * 0.5f;
+            Vector3 rayDirection = new Vector3(direction.x, 0, direction.y);
+
+            if (Physics.Raycast(origin, rayDirection, out RaycastHit hit, 1f, obstacleLayer))
+            {
+                return;
+            }
+
+
+            if (!gameStarted || isMoving || direction == Vector2.zero)
+                return;
+
+            TryMove(direction);
         };
-
-        input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
     }
 
     private void Update()
     {
-        Death();
+        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
+        {
+            Death();
+        }
     }
 
 
     private void Death()
     {
-        if (!isDead && transform.position.z < Camera.main.transform.position.z + 0.5f)
-        {
-            isDead = true;
-            Debug.Log("Game End");
-            Time.timeScale = 0f;
-        }
+        isDead = true;
+        GameManager.instance.EndGame();
     }
 
     private void TryMove(Vector2 direction)
     {
         if (isMoving) return;
 
-        // Get movement vector
+        // If moving forward (W), reset the scroll timer
+        if (direction == Vector2.up)
+        {
+            CameraFollowScript.lastPlayerMoveTime = Time.time;
+        }
+        // If moving A / S / D, do nothing with lastPlayerMoveTime
+        // so scroll continues normally
+
+        // Movement logic
         Vector3 moveDir = new Vector3(direction.x, 0f, direction.y);
         targetPosition = transform.position + moveDir * gridSize;
 
-        // Start smooth rotation and movement
         StartCoroutine(RotateTowards(moveDir));
         StartCoroutine(MoveToTarget());
     }
@@ -93,13 +125,7 @@ public class Player : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        //Check ground limit
         transform.position = targetPosition;
-        if (Mathf.Abs(transform.position.z) >= GroundManager.Instance.limitRecenter)
-        {
-            GroundManager.Instance.RecenterMap();
-        }
 
         isMoving = false;
     }
@@ -120,5 +146,38 @@ public class Player : MonoBehaviour
         }
 
         transform.rotation = targetRot;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (immortal == false)
+            {
+                Death();
+            }
+            else
+            {
+                List<SkillBase> playerSkill = skillManager.skills;
+                foreach(SkillBase skill in playerSkill)
+                {
+                    if(skill is Shield)
+                    {
+                        ((Shield)skill).StopSkill();
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+public class PlayerConfig : RoleConfig
+{
+    public PlayerConfig()
+    {
+        codeName = "Player";
+        skills = new List<string>();
+        skills.Add("Magnet");
     }
 }

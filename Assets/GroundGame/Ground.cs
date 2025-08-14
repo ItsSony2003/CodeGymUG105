@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     public Transform spawnPos;
+    public Transform center;
 
     // Start is called before the first frame update
     void Start()

@@ -5,8 +5,8 @@ public class ObstacleSpawner : MonoBehaviour
     public ObstacleSpawnPoint[] spawnPointsLeft;
     public ObstacleSpawnPoint[] spawnPointsRight;
 
-    public ObjectPool poolLeft;
-    public ObjectPool poolRight;
+    public ObjectPoolObtac poolLeft;
+    public ObjectPoolObtac poolRight;
 
     public float spawnInterval = 0.5f;
     private float timer;
@@ -70,13 +70,12 @@ public class ObstacleSpawner : MonoBehaviour
     //        }
     //    }
     //}
-    void SpawnObstacles(ObstacleSpawnPoint[] spawnPoints, ObjectPool pool)
+    void SpawnObstacles(ObstacleSpawnPoint[] spawnPoints, ObjectPoolObtac pool)
     {
         foreach (var spawn in spawnPoints)
         {
             if (spawn.spawnPoint == null)
             {
-                Debug.LogWarning($"⚠️ SpawnPoint '{spawn.name}' chưa gán Transform.");
                 continue;
             }
 
@@ -87,7 +86,6 @@ public class ObstacleSpawner : MonoBehaviour
                 prefabToSpawn = spawn.fixedPrefab;
                 if (prefabToSpawn == null)
                 {
-                    Debug.LogWarning($"⚠️ '{spawn.name}' là điểm cố định nhưng chưa gán prefab.");
                     continue;
                 }
             }
@@ -95,13 +93,12 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 GameObject[] candidatePrefabs = spawn.obstaclePrefabs;
 
-                // Nếu chưa gán danh sách prefab, tự lấy từ ObjectPool
-                if (candidatePrefabs == null || candidatePrefabs.Length == 0)
+                //// Nếu chưa gán danh sách prefab, tự lấy từ ObjectPool
+                if (candidatePrefabs != null && candidatePrefabs.Length == 0)
                 {
                     candidatePrefabs = pool.GetPrefabsArray();
                     if (candidatePrefabs == null || candidatePrefabs.Length == 0)
                     {
-                        Debug.LogWarning($"⚠️ '{spawn.name}' không có prefab nào trong ObjectPool.");
                         continue;
                     }
                 }
@@ -110,12 +107,14 @@ public class ObstacleSpawner : MonoBehaviour
                 prefabToSpawn = candidatePrefabs[rand];
             }
 
-            // Lấy từ Object Pool tương ứng
+            //Lấy từ Object Pool tương ứng
             GameObject pooledObj = pool.GetObjFromPrefab(prefabToSpawn);
             if (pooledObj != null)
             {
+                pooledObj.transform.rotation = spawn.spawnPoint.rotation;
+
                 pooledObj.transform.position = spawn.spawnPoint.position;
-                pooledObj.transform.rotation = prefabToSpawn.transform.rotation;
+
                 pooledObj.SetActive(true);
             }
         }
