@@ -10,6 +10,7 @@ public class ObjectPool : MonoBehaviour
     public GameObject objPrefabs;
     public int poolSize = 10;
     private Queue<GameObject> poolQueue;
+    public GameObject currentItem;
 
     public List<GameObject> usingObjList;
 
@@ -38,6 +39,7 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = poolQueue.Dequeue();
             obj.SetActive(true);
             usingObjList.Add(obj);
+            currentItem = obj;
             return obj;
         }
         else
@@ -46,6 +48,7 @@ public class ObjectPool : MonoBehaviour
             usingObjList.Add(obj);
             return obj;
         }
+
     }
 
     public void ReturnObj(GameObject obj)

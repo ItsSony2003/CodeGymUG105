@@ -65,8 +65,8 @@ public class GroundManager : MonoBehaviour
         foreach (var theme in themeList)
         {
             var list = new List<GameObject>();
-
-            for (int i = 0; i < 10; i++)
+         
+            for (int i = 0; i < 5; i++)
             {
                 var randomPrefab = theme.groundPrefabs[Random.Range(0, theme.groundPrefabs.Count)];
                 pools.objPrefabs = randomPrefab;

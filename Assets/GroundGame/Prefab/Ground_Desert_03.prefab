@@ -184,7 +184,6 @@ GameObject:
   m_Component:
   - component: {fileID: 772957761785011253}
   - component: {fileID: 5647239776164817585}
-  - component: {fileID: 1213437232261773882}
   m_Layer: 0
   m_Name: ObstacleSpawner
   m_TagString: Untagged
@@ -236,30 +235,9 @@ MonoBehaviour:
     fixedPrefab: {fileID: 0}
     obstaclePrefabs: []
   spawnPointsRight: []
-  poolLeft: {fileID: 0}
+  poolLeft: {fileID: 5494159850453970625}
   poolRight: {fileID: 2229428692449459303}
   spawnInterval: 4
---- !u!114 &1213437232261773882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364606370542667096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3527a86e1bd4c789b54de735e3331c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objPrefabs:
-  - {fileID: 9148858729794199085, guid: 8525d18d4757f244ebd1f1d79eab6a3f, type: 3}
-  - {fileID: 425196884293183330, guid: 90bee97fae4a9634c9e648ac0303192a, type: 3}
-  - {fileID: 8395778820610835068, guid: 80074ed15f86266438d7588b9fb5c107, type: 3}
-  - {fileID: 5948789454794969888, guid: 58036b4364891d1439aaa958d05134e8, type: 3}
-  - {fileID: 7018265209238989201, guid: 581fa67bb15301d4ea1d97e217a2f144, type: 3}
-  - {fileID: 3023569620020328212, guid: 747c38064f478be4aa6e6154a524adf3, type: 3}
-  - {fileID: 2937634506478350126, guid: 635b11256f7f5d24a9e9ac5ddb9ac03b, type: 3}
-  poolSize: 10
 --- !u!1 &992529430479446243
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7349458411550951912}
+  - component: {fileID: 5494159850453970625}
   m_Layer: 0
   m_Name: Pool_Left
   m_TagString: Untagged
@@ -539,6 +518,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3297293119118236977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5494159850453970625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271195988171769407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3527a86e1bd4c789b54de735e3331c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objPrefabs:
+  - {fileID: 9148858729794199085, guid: 8525d18d4757f244ebd1f1d79eab6a3f, type: 3}
+  - {fileID: 425196884293183330, guid: 90bee97fae4a9634c9e648ac0303192a, type: 3}
+  - {fileID: 8395778820610835068, guid: 80074ed15f86266438d7588b9fb5c107, type: 3}
+  - {fileID: 5948789454794969888, guid: 58036b4364891d1439aaa958d05134e8, type: 3}
+  - {fileID: 7018265209238989201, guid: 581fa67bb15301d4ea1d97e217a2f144, type: 3}
+  - {fileID: 3023569620020328212, guid: 747c38064f478be4aa6e6154a524adf3, type: 3}
+  - {fileID: 2937634506478350126, guid: 635b11256f7f5d24a9e9ac5ddb9ac03b, type: 3}
+  poolSize: 10
 --- !u!1 &7664693874038265037
 GameObject:
   m_ObjectHideFlags: 0

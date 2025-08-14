@@ -15,6 +15,7 @@ public class Player : AIBase
     private bool isMoving = false;
     private Vector3 targetPosition;
 
+    public bool immortal = false;
     private bool isDead = false;
     public static bool gameStarted = false;
 
@@ -26,6 +27,8 @@ public class Player : AIBase
         }
 
         input = new PlayerInputSet();
+
+        skillManager = GetComponent<SkillManager>();
     }
 
     private void OnEnable() => input.Enable();
@@ -147,7 +150,22 @@ public class Player : AIBase
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Death();
+            if (immortal == false)
+            {
+                Death();
+            }
+            else
+            {
+                List<SkillBase> playerSkill = skillManager.skills;
+                foreach(SkillBase skill in playerSkill)
+                {
+                    if(skill is Shield)
+                    {
+                        ((Shield)skill).StopSkill();
+
+                    }
+                }
+            }
         }
     }
 }

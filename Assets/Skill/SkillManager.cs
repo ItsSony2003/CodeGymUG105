@@ -5,13 +5,16 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public List<SkillBase> skills = new List<SkillBase>();
+    private Dictionary<int, Coroutine> activeSkillCoroutines = new Dictionary<int, Coroutine>();
     public bool isCooldown = false;
 
     // Start is called before the first frame update
     void Start()
     {
         SkillBase skillMagnet = new Magnet(gameObject.GetComponent<AIBase>(), new MagnetConfig());
+        SkillBase skillShield = new Shield(gameObject.GetComponent<AIBase>(), new ShieldConfig());
         skills.Add(skillMagnet);
+        skills.Add(skillShield);
         foreach(var skill in skills)
         {
             Debug.Log(skill);
@@ -48,10 +51,9 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-
     private IEnumerator SkillCooldownCoroutine(int slot)
     {
-        float duration = skills[slot].skillConfig.parramOnLevel[2];
+        float duration = skills[slot].duration;
         float timer = 0f;
 
         while (timer < duration)
@@ -62,5 +64,6 @@ public class SkillManager : MonoBehaviour
         }
 
         Debug.Log("Skill ended!");
+        skills[slot].StopSkill();
     }
 }

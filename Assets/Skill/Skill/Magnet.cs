@@ -6,9 +6,7 @@ using UnityEngine.PlayerLoop;
 public class Magnet : SkillBase
 {
     private float lastCastTime = -Mathf.Infinity;
-    private float cooldown => skillConfig.parramOnLevel[1];
     private float radius => skillConfig.parramOnLevel[0];
-    private float duration;
     private LayerMask targetLayer = LayerMask.GetMask("Coin");
 
     public Magnet(AIBase owner, SkillConfig skillConfig)
@@ -16,6 +14,7 @@ public class Magnet : SkillBase
         this.owner = owner;
         this.skillConfig = skillConfig;
         duration = skillConfig.parramOnLevel[2];
+        cooldown = skillConfig.parramOnLevel[1];
     }
 
     public override void PlaySkill()

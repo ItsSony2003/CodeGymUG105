@@ -7,6 +7,9 @@ public class SkillBase
     protected AIBase owner;
     public SkillConfig skillConfig;
     protected List<EffectBase> effects;
+    public float duration;
+    public float cooldown;
+
 
 
     public virtual void PlaySkill()
