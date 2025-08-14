@@ -19,6 +19,8 @@ public class Player : AIBase
     private bool isDead = false;
     public static bool gameStarted = false;
 
+    public SkillManager skillManager;
+
     private void Awake()
     {
         if (instance == null)
