@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DisableObstacle
   - Ground
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
