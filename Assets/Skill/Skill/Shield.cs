@@ -17,7 +17,7 @@ public class Shield : SkillBase
     {
         if (Time.time - lastCastTime > cooldown)
         {
-            Debug.Log("magnet active");
+            Debug.Log("shield active");
             lastCastTime = Time.time;
             Player.instance.immortal = true;
         }
