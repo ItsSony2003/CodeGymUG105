@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public List<SkillBase> skills = new List<SkillBase>();
-    private Dictionary<int, Coroutine> activeSkillCoroutines = new Dictionary<int, Coroutine>();
+    private Dictionary<SkillBase, Coroutine> activeSkillCoroutines = new Dictionary<SkillBase, Coroutine>();
     public bool isCooldown = false;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class SkillManager : MonoBehaviour
         skills.Add(skillShield);
         foreach(var skill in skills)
         {
-            Debug.Log(skill);
+            Debug.LogWarning(skill);
         }
     }
 
@@ -46,7 +46,8 @@ public class SkillManager : MonoBehaviour
 
             if(skills[slotIndex].skillConfig.skillActiveCondition == SkillActiveCondition.OnAction)
             {
-                StartCoroutine(SkillCooldownCoroutine(slotIndex));
+                Coroutine coro = StartCoroutine(SkillCooldownCoroutine(slotIndex));
+                activeSkillCoroutines[skills[slotIndex]] = coro;
             }
         }
     }
@@ -65,5 +66,28 @@ public class SkillManager : MonoBehaviour
 
         Debug.Log("Skill ended!");
         skills[slot].StopSkill();
+        activeSkillCoroutines.Remove(skills[slot]);
+    }
+
+    public void StopSkill(SkillBase skill)
+    {
+        if (activeSkillCoroutines.ContainsKey(skill))
+        {
+            StopCoroutine(activeSkillCoroutines[skill]);
+            skill.StopSkill();
+            activeSkillCoroutines.Remove(skill);
+            Debug.Log($"Skill {skill} stopped manually!");
+        }
+    }
+
+    public void StopAllSkills()
+    {
+        foreach (var kvp in activeSkillCoroutines)
+        {
+            StopCoroutine(kvp.Value);
+            kvp.Key.StopSkill();
+        }
+        activeSkillCoroutines.Clear();
+        Debug.Log("All skills stopped!");
     }
 }

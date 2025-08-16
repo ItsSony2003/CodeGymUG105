@@ -65,6 +65,7 @@ public class Player : AIBase
             Vector3 origin = transform.position + Vector3.up * 0.5f;
             Vector3 rayDirection = new Vector3(direction.x, 0, direction.y);
 
+            // 
             if (Physics.Raycast(origin, rayDirection, out RaycastHit hit, 1f, obstacleLayer))
             {
                 return;
@@ -158,15 +159,15 @@ public class Player : AIBase
             }
             else
             {
-                List<SkillBase> playerSkill = skillManager.skills;
-                foreach(SkillBase skill in playerSkill)
-                {
-                    if(skill is Shield)
-                    {
-                        ((Shield)skill).StopSkill();
-
-                    }
-                }
+                //List<SkillBase> playerSkill = skillManager.skills;
+                //foreach(SkillBase skill in playerSkill)
+                //{
+                //    if(skill is Shield)
+                //    {
+                //        ((Shield)skill).StopSkill();
+                //        skillManager.StopSkill(skill);
+                //    }
+                //}
             }
         }
     }
