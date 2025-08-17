@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class GroundManager : MonoBehaviour
@@ -38,6 +39,33 @@ public class GroundManager : MonoBehaviour
 
         LoadThemeFromResource();
 
+    }
+    public void ResetGroundManager()
+    {
+        ResetPoolGround();
+
+        GenerateThemePrefabDict();
+
+        currentGTheme = themeList[0];
+
+        for (int i = 0; i < 5; i++)
+        {
+            newGround();
+        }
+
+        Player.instance.gameObject.transform.position = new Vector3(1, 0.5f, 1);
+    }
+
+    public void ResetPoolGround()
+    {
+        foreach (GameObject obj in pools.poolQueue)
+        {
+            if (obj != null)
+                GameObject.Destroy(obj);
+        }
+
+        pools.poolQueue.Clear();
+        pools.usingObjList.Clear();
     }
 
     void LoadThemeFromResource()
@@ -82,8 +110,6 @@ public class GroundManager : MonoBehaviour
     void Start()
     {
         currentGTheme = themeList[0];
-
-        //currentThemePool.objPrefabs = currentGTheme.groundPrefabs;
 
         for (int i = 0; i < 5; i++)
         {

@@ -21,4 +21,8 @@ public class UiLoseGame : MonoBehaviour
         UIManager.instance.ChangeMap("MainMenu");
     }
 
+    public void OnClickRestart()
+    {
+        GameManager.instance.ResetGame();
+    }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -278,6 +278,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3293253988127754887, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
   m_PrefabInstance: {fileID: 1834220259}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &494589620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6834010346314997247, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+  m_PrefabInstance: {fileID: 1834220259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494589615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b04f302e204470cb8c972f397b617d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &619363301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8581296569313672536, guid: 4d10d86b283b8ad4db7042e783b8b4ad, type: 3}
@@ -572,6 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e62b976b2a447d2be119442fb06190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCooldown: 0
 --- !u!1 &948471073
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPrefabs: {fileID: 0}
   poolSize: 30
+  currentItem: {fileID: 0}
   usingObjList: []
 --- !u!114 &948471075
 MonoBehaviour:
@@ -828,6 +841,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1863101780}
     m_Modifications:
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 494589620}
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickRestart
+      objectReference: {fileID: 0}
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UiLoseGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 933549206513874160, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1147831334991632180, guid: 19afeb5a34a244eff919a3874bbd22f9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1120,6 +1161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPrefabs: {fileID: 5692110869957044728, guid: 64a22d46759ff4d218d29730078d1ace, type: 3}
   poolSize: 50
+  currentItem: {fileID: 0}
   usingObjList: []
 --- !u!114 &1982268891
 MonoBehaviour:
