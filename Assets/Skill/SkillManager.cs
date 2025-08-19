@@ -38,7 +38,7 @@ public class SkillManager : MonoBehaviour
         
     }
 
-    void UseSkill(int slotIndex)
+    public void UseSkill(int slotIndex)
     {
         if (skills[slotIndex] != null)
         {

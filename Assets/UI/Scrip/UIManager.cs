@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public Player player;
+
     //ui child
     public GameObject mainMenuUi;
     public GameObject inGameUi;
@@ -14,7 +16,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -24,13 +26,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        player = Player.instance;
     }
 
     public void TimeGame(bool pause)
@@ -63,5 +59,27 @@ public class UIManager : MonoBehaviour
     {
         UiInGame UiInGameComp = inGameUi.GetComponent<UiInGame>();
         UiInGameComp.SetScore(numScore);
+    }
+
+
+    //UI skill
+    public void SlotSkill_1()
+    {
+        player.skillManager.UseSkill(0);
+    }
+
+    public void SlotSkill_2()
+    {
+        player.skillManager.UseSkill(1);
+    }
+
+    public void SlotSkill_3()
+    {
+        player.skillManager.UseSkill(2);
+    }
+
+    public void SlotSkill_4()
+    {
+        player.skillManager.UseSkill(3);
     }
 }
