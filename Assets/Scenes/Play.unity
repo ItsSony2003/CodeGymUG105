@@ -1407,13 +1407,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481892361351248084, guid: bf52b5234bced49fda913b9d8303c8dd, type: 3}
   m_PrefabInstance: {fileID: 242160511}
   m_PrefabAsset: {fileID: 0}
-  
 --- !u!1 &1384447279 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4929129353238667872, guid: b68e028ad9c8e4105b558cfaf25f56fd, type: 3}
   m_PrefabInstance: {fileID: 5490350948620606993}
   m_PrefabAsset: {fileID: 0}
-
 --- !u!1 &1514981745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1496,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-
 --- !u!1001 &1834220259
 PrefabInstance:
   m_ObjectHideFlags: 0
