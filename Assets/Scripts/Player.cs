@@ -92,9 +92,10 @@ public class Player : AIBase
     {
         isDead = true;
         GameManager.instance.EndGame();
+        StopAllCoroutines();
     }
 
-    private void TryMove(Vector2 direction)
+     void TryMove(Vector2 direction)
     {
         if (isMoving) return;
 
@@ -170,6 +171,12 @@ public class Player : AIBase
                 //}
             }
         }
+    }
+
+    public void ResetPlayer()
+    {
+        isDead = false;
+        isMoving = false;
     }
 }
 

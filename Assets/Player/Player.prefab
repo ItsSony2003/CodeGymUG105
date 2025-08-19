@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 6135034598480746556}
   - component: {fileID: 2874958894867209400}
   - component: {fileID: 977977616846908416}
-  m_Layer: 0
+  - component: {fileID: 7014987952973875168}
+  - component: {fileID: 5337226239700315302}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDuration: 0.1
   gridSize: 1
+  immortal: 0
+  skillManager: {fileID: 0}
 --- !u!54 &2874958894867209400
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,6 +101,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 1, z: 0.6}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &7014987952973875168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193527651057609810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e62b976b2a447d2be119442fb06190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCooldown: 0
+--- !u!114 &5337226239700315302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193527651057609810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb249922cfc97354d9f067443aa855c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &321496042932703019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a4a42f8afa667e84aaa029c4b8ebaa64, type: 3}
       propertyPath: m_Name
       value: Chiken
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a4a42f8afa667e84aaa029c4b8ebaa64, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
