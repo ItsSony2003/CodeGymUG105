@@ -40,9 +40,13 @@ public class GroundManager : MonoBehaviour
         LoadThemeFromResource();
 
     }
+
+
     public void ResetGroundManager()
     {
         ResetPoolGround();
+
+        groundHighest = null;
 
         GenerateThemePrefabDict();
 
@@ -53,20 +57,29 @@ public class GroundManager : MonoBehaviour
             newGround();
         }
 
+        Camera.main.transform.position = Vector3.zero;
         Player.instance.gameObject.transform.position = new Vector3(1, 0.5f, 1);
+
+        Player.instance.ResetPlayer();
+
     }
+
 
     public void ResetPoolGround()
     {
         foreach (GameObject obj in pools.poolQueue)
         {
-            if (obj != null)
-                GameObject.Destroy(obj);
+            if (obj != null) Destroy(obj);
         }
-
+        foreach (GameObject obj in pools.usingObjList)
+        {
+            if (obj != null) Destroy(obj);
+        }
         pools.poolQueue.Clear();
         pools.usingObjList.Clear();
+
     }
+
 
     void LoadThemeFromResource()
     {
@@ -78,11 +91,7 @@ public class GroundManager : MonoBehaviour
         themeList.Add(desertTheme);
         themeList.Add(roadTheme);
 
-        //currentGTheme = themeList[0];
-
         GenerateThemePrefabDict();
-
-
     }
 
     [ContextMenu("Generate Theme Dictionary")]
@@ -143,7 +152,7 @@ public class GroundManager : MonoBehaviour
 
     public void newGround()
     {
-        CheckChangeTheme();
+        ChangeTheme();
 
         GameObject newGroundObj = pools.GetObj();
 
