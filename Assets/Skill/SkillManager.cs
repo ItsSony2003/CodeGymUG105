@@ -120,7 +120,7 @@ public class SkillManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4)) UseSkill(3);
     }
 
-    void UseSkill(int slotIndex)
+    public void UseSkill(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= skills.Count || skills[slotIndex] == null) return;
 
