@@ -9,5 +9,5 @@ public class SkillConfig
     public SkillCastType skillCastType;
     public List<EffectConfig> effects;
     public int[] levelUp;
-    public float[][] parramOnLevel;
+    public float[] parramOnLevel;
 }

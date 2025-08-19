@@ -94,8 +94,8 @@ Transform:
   m_GameObject: {fileID: 3773945194022563979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0.0554}
-  m_LocalScale: {x: 1, y: 1.5739, z: 1.4529}
+  m_LocalPosition: {x: 0, y: -0, z: -0.0594}
+  m_LocalScale: {x: 1, y: 1.5654, z: 1.4842}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8512270056143443902}
@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: 8512270056143443902}
   - component: {fileID: 127027073386661013}
   - component: {fileID: 7824028324144594397}
-  - component: {fileID: 8627166302343558806}
+  - component: {fileID: 6830929968119487171}
   m_Layer: 0
-  m_Name: WoodLeft
+  m_Name: WoodRight
   m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,8 +229,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0850768, y: 0.38692307, z: 0.32041833}
-  m_Center: {x: -0.033406496, y: 0.20649654, z: 0.07770711}
+  m_Size: {x: 2.0632024, y: 0.37293878, z: 0.3588879}
+  m_Center: {x: 0.03654301, y: 0.19950439, z: -0.06011119}
 --- !u!54 &7824028324144594397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8627166302343558806
+--- !u!114 &6830929968119487171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8834819514954891407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c04dc647bd094545882984098b59ffa, type: 3}
+  m_Script: {fileID: 11500000, guid: 16ce639ab0c3212429049883b5f3d7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 558349b8d602446409727ab6ee24b522, type: 2}
+  config: {fileID: 11400000, guid: a2f7e33a7f301ea4b8ecae5d7b44d48f, type: 2}

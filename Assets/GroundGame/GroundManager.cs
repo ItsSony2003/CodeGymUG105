@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class GroundManager : MonoBehaviour
@@ -40,6 +41,46 @@ public class GroundManager : MonoBehaviour
 
     }
 
+
+    public void ResetGroundManager()
+    {
+        ResetPoolGround();
+
+        groundHighest = null;
+
+        GenerateThemePrefabDict();
+
+        currentGTheme = themeList[0];
+
+        for (int i = 0; i < 5; i++)
+        {
+            newGround();
+        }
+
+        Camera.main.transform.position = Vector3.zero;
+        Player.instance.gameObject.transform.position = new Vector3(1, 0.5f, 1);
+
+        Player.instance.ResetPlayer();
+
+    }
+
+
+    public void ResetPoolGround()
+    {
+        foreach (GameObject obj in pools.poolQueue)
+        {
+            if (obj != null) Destroy(obj);
+        }
+        foreach (GameObject obj in pools.usingObjList)
+        {
+            if (obj != null) Destroy(obj);
+        }
+        pools.poolQueue.Clear();
+        pools.usingObjList.Clear();
+
+    }
+
+
     void LoadThemeFromResource()
     {
         GroundTheme grassTheme = Resources.Load<GroundTheme>("SO_GroundTheme/GrassTheme");
@@ -50,11 +91,7 @@ public class GroundManager : MonoBehaviour
         themeList.Add(desertTheme);
         themeList.Add(roadTheme);
 
-        //currentGTheme = themeList[0];
-
         GenerateThemePrefabDict();
-
-
     }
 
     [ContextMenu("Generate Theme Dictionary")]
@@ -65,8 +102,8 @@ public class GroundManager : MonoBehaviour
         foreach (var theme in themeList)
         {
             var list = new List<GameObject>();
-
-            for (int i = 0; i < 10; i++)
+         
+            for (int i = 0; i < 5; i++)
             {
                 var randomPrefab = theme.groundPrefabs[Random.Range(0, theme.groundPrefabs.Count)];
                 pools.objPrefabs = randomPrefab;
@@ -82,8 +119,6 @@ public class GroundManager : MonoBehaviour
     void Start()
     {
         currentGTheme = themeList[0];
-
-        //currentThemePool.objPrefabs = currentGTheme.groundPrefabs;
 
         for (int i = 0; i < 5; i++)
         {
@@ -117,7 +152,7 @@ public class GroundManager : MonoBehaviour
 
     public void newGround()
     {
-        CheckChangeTheme();
+        ChangeTheme();
 
         GameObject newGroundObj = pools.GetObj();
 

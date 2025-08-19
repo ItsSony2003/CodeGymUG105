@@ -15,8 +15,11 @@ public class Player : AIBase
     private bool isMoving = false;
     private Vector3 targetPosition;
 
+    public bool immortal = false;
     private bool isDead = false;
     public static bool gameStarted = false;
+
+    public SkillManager skillManager;
 
     private void Awake()
     {
@@ -26,6 +29,8 @@ public class Player : AIBase
         }
 
         input = new PlayerInputSet();
+
+        skillManager = GetComponent<SkillManager>();
     }
 
     private void OnEnable() => input.Enable();
@@ -60,6 +65,7 @@ public class Player : AIBase
             Vector3 origin = transform.position + Vector3.up * 0.5f;
             Vector3 rayDirection = new Vector3(direction.x, 0, direction.y);
 
+            // 
             if (Physics.Raycast(origin, rayDirection, out RaycastHit hit, 1f, obstacleLayer))
             {
                 return;
@@ -86,9 +92,10 @@ public class Player : AIBase
     {
         isDead = true;
         GameManager.instance.EndGame();
+        StopAllCoroutines();
     }
 
-    private void TryMove(Vector2 direction)
+     void TryMove(Vector2 direction)
     {
         if (isMoving) return;
 
@@ -147,7 +154,38 @@ public class Player : AIBase
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Death();
+            if (immortal == false)
+            {
+                Death();
+            }
+            else
+            {
+                //List<SkillBase> playerSkill = skillManager.skills;
+                //foreach(SkillBase skill in playerSkill)
+                //{
+                //    if(skill is Shield)
+                //    {
+                //        ((Shield)skill).StopSkill();
+                //        skillManager.StopSkill(skill);
+                //    }
+                //}
+            }
         }
+    }
+
+    public void ResetPlayer()
+    {
+        isDead = false;
+        isMoving = false;
+    }
+}
+
+public class PlayerConfig : RoleConfig
+{
+    public PlayerConfig()
+    {
+        codeName = "Player";
+        skills = new List<string>();
+        skills.Add("Magnet");
     }
 }

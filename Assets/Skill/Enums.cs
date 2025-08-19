@@ -30,5 +30,6 @@ public enum SkillCastType
     Passive,
     Active,
     AutoAimTarget,
-    Custom
+    Custom,
+    DoOne
 }
