@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 127027073386661013}
   - component: {fileID: 7824028324144594397}
   - component: {fileID: 8627166302343558806}
+  - component: {fileID: -351461998378333565}
   m_Layer: 0
   m_Name: WoodLeft
   m_TagString: MovingPlatform
@@ -271,3 +272,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 558349b8d602446409727ab6ee24b522, type: 2}
+--- !u!114 &-351461998378333565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834819514954891407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69e48c62de06140b2c569ce8ab630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhileFrozen:
+  - {fileID: 8627166302343558806}

@@ -7,6 +7,7 @@ public class SkillManager : MonoBehaviour
     [Header("Effect References")]
     [SerializeField] private GameObject magnetEffect;
     [SerializeField] private GameObject shieldEffect;
+    [SerializeField] private GameObject freezeEffect;
 
 
     public List<SkillBase> skills = new List<SkillBase>();
@@ -24,7 +25,13 @@ public class SkillManager : MonoBehaviour
         skills.Add(skillMagnet);
         skills.Add(skillShield);
         //skills.Add(skillJumBoost);
+        
+        SkillBase skillFreeze = new Freeze(ai, new FreezeConfig(), freezeEffect);
 
+        skills.Add(skillMagnet);
+        skills.Add(skillShield);
+        skills.Add(skillFreeze);
+        
         foreach (var skill in skills) Debug.LogWarning(skill);
     }
 
