@@ -9,7 +9,7 @@ public class ObjectPool : MonoBehaviour
 {
     public GameObject objPrefabs;
     public int poolSize = 10;
-    private Queue<GameObject> poolQueue;
+    public Queue<GameObject> poolQueue;
     public GameObject currentItem;
 
     public List<GameObject> usingObjList;

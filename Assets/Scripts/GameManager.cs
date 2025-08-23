@@ -33,8 +33,11 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        Time.timeScale = 1f;
         UIManager.instance.loseGameUi.SetActive(false);
+        UIManager.instance.SetScoreInGame(00);
+        GroundManager.Instance.ResetGroundManager();
+        Time.timeScale = 1f;
+
     }
 
     public void EndGame()
