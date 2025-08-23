@@ -71,7 +71,6 @@ public class Player : AIBase
                 return;
             }
 
-
             if (!gameStarted || isMoving || direction == Vector2.zero)
                 return;
 

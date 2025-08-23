@@ -5,64 +5,6 @@ using UnityEngine.PlayerLoop;
 
 public class Magnet : SkillBase
 {
-    //private float lastCastTime = -Mathf.Infinity;
-    //private float radius => skillConfig.parramOnLevel[0];
-    //private LayerMask targetLayer = LayerMask.GetMask("Coin");
-
-    //public Magnet(AIBase owner, SkillConfig skillConfig)
-    //{
-    //    this.owner = owner;
-    //    this.skillConfig = skillConfig;
-    //    duration = skillConfig.parramOnLevel[2];
-    //    cooldown = skillConfig.parramOnLevel[1];
-    //}
-
-    //public override void PlaySkill()
-    //{
-    //    if (Time.time - lastCastTime > cooldown)
-    //    {
-    //        Debug.Log("magnet active");
-    //        lastCastTime = Time.time;
-
-    //        // Activate visual ShieldEffect
-    //        Player.instance.transform.Find("MagnetEffect").gameObject.SetActive(true);
-
-    //        // Schedule StopSkill() after duration
-    //        Player.instance.StartCoroutine(DeactivateAfterDuration());
-    //    }
-    //}
-
-    //private IEnumerator DeactivateAfterDuration()
-    //{
-    //    yield return new WaitForSeconds(duration);
-    //    StopSkill();
-    //}
-
-    //public override void StopSkill()
-    //{
-    //    Debug.Log("magnet expired");
-
-    //    // Deactivate visual MagnetEffect
-    //    Player.instance.transform.Find("MagnetEffect").gameObject.SetActive(false);
-    //}
-
-    //void MagnetCoinInRadius()
-    //{
-    //    Collider[] colliders = Physics.OverlapSphere(owner.transform.position, radius, targetLayer);
-
-    //    foreach (Collider coin in colliders)
-    //    {
-    //        Vector3 direction = (owner.transform.position - coin.transform.position).normalized;
-
-    //        coin.transform.position += direction * 5f * Time.deltaTime;
-    //    }
-    //}
-
-
-    //public override void Tick()
-    //{
-    //    MagnetCoinInRadius();
-    //}
     private float lastCastTime = -Mathf.Infinity;
     private float radius => skillConfig.parramOnLevel[0];
     private LayerMask targetLayer = LayerMask.GetMask("Coin");
