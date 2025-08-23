@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : SkillBase
+public class JumpBoost: SkillBase
 {
     private float lastCastTime = -Mathf.Infinity;
     private readonly GameObject effect; // injected once
     private bool isActive;
 
-    public Shield(AIBase owner, SkillConfig skillConfig, GameObject effect)
+    public JumpBoost(AIBase owner, SkillConfig skillConfig, GameObject effect)
     {
         this.owner = owner;
         this.skillConfig = skillConfig;
@@ -22,15 +22,17 @@ public class Shield : SkillBase
     public override void PlaySkill()
     {
         // cooldown check
-        if (Time.time - lastCastTime < cooldown) 
+        if (Time.time - lastCastTime < cooldown)
             return;
+
+        Debug.Log("jumppp");
 
         lastCastTime = Time.time;
         isActive = true;
 
-        Player.instance.immortal = true;
+        Player.instance.gridSize = 2;
 
-        if (effect) 
+        if (effect)
             effect.SetActive(true);
     }
 
@@ -38,28 +40,29 @@ public class Shield : SkillBase
     {
         isActive = false;
 
-        Player.instance.immortal = false;
+        Player.instance.gridSize = 1;
 
         // VFX off
-        if (effect) 
+        if (effect)
             effect.SetActive(false);
     }
 
     public override void Tick()
     {
-        // no per-frame logic needed for shield right now
-        if (!isActive) 
+        // no per-frame logic needed for right now
+        if (!isActive)
             return;
     }
 }
 
-public class ShieldConfig : SkillConfig
+public class JumpBoostConfig : SkillConfig
 {
-    public ShieldConfig()
+    public JumpBoostConfig()
     {
         codeName = "Shield";
         skillActiveCondition = SkillActiveCondition.OnAction;
         skillCastType = SkillCastType.Active;
-        parramOnLevel = new float[] {20f, 10f }; // cooldown, duration
+        parramOnLevel = new float[] { 20f, 10f }; // cooldown, duration
     }
 }
+
