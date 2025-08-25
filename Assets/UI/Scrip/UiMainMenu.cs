@@ -31,4 +31,15 @@ public class UiMainMenu : MonoBehaviour
     {
         Debug.Log("Dang Phat trien tinh nang");
     }
+    public void OnClickOpenSettingUi()
+    {
+        UIManager.instance.settingUi.SetActive(true);
+        
+    }
+    public void OnClickCloseSettingUi()
+    {
+        UIManager.instance.settingUi.SetActive(false);
+    }
+    
+
 }

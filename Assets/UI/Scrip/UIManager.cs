@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuUi;
     public GameObject inGameUi;
     public GameObject loseGameUi;
+    public GameObject settingUi;
+    public GameObject gamePausedUi;
 
     private void Awake()
     {
