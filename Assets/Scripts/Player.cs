@@ -90,6 +90,7 @@ public class Player : AIBase
     private void Death()
     {
         isDead = true;
+        transform.SetParent(null);
         GameManager.instance.EndGame();
         StopAllCoroutines();
     }
@@ -174,6 +175,11 @@ public class Player : AIBase
                 //}
             }
         }
+
+        if (other.CompareTag("Water"))
+        {
+            Death();
+        }
     }
 
     public void ResetPlayer()
@@ -193,7 +199,6 @@ public class Player : AIBase
             return;
         }
 
-        // Sắp xếp theo khoảng cách gần nhất
         System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
         bool foundGround = false;
@@ -220,7 +225,6 @@ public class Player : AIBase
             }
         }
 
-        // Ưu tiên xử lý theo thứ tự
         if (foundGround)
         {
             if (transform.parent != null)
@@ -244,8 +248,6 @@ public class Player : AIBase
             Death();
         }
     }
-
-
 
 }
 

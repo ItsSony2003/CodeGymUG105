@@ -65,6 +65,17 @@ public class ObjectPoolObtac : MonoBehaviour
 
     public void ReturnObj(GameObject obj)
     {
+        if (transform.childCount > 0)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("Player"))
+                {
+                    child.SetParent(null);
+                }
+            }
+        }
+
         obj.SetActive(false);
         usingObjList.Remove(obj);
         poolQueue.Enqueue(obj);
