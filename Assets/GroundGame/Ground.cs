@@ -6,6 +6,7 @@ public class Ground : MonoBehaviour
 {
     public Transform spawnPos;
     public Transform center;
+    bool hasPassed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,17 @@ public class Ground : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (!hasPassed)
         {
-            GroundManager.Instance.newGround();
+            if (other.GetComponent<Player>())
+            {
+                GroundManager.Instance.newGround();
+                hasPassed = true;
+            }
         }
+    }
+    private void OnDisable()
+    {
+        hasPassed = false;
     }
 }
