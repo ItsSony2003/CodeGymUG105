@@ -33,3 +33,11 @@ public enum SkillCastType
     Custom,
     DoOne
 }
+
+public enum GridType
+{
+    Ground,
+    Water,
+    Log,
+
+}

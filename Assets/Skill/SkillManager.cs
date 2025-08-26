@@ -25,7 +25,7 @@ public class SkillManager : MonoBehaviour
         skills.Add(skillShield);
         //skills.Add(skillJumBoost);
 
-        foreach (var skill in skills) Debug.LogWarning(skill);
+        //foreach (var skill in skills) Debug.LogWarning(skill);
     }
 
     void Update()

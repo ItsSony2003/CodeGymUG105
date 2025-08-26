@@ -77,10 +77,9 @@ GameObject:
   - component: {fileID: 3773945194022857899}
   - component: {fileID: 3773945194025725067}
   - component: {fileID: 3773945194024758859}
-  - component: {fileID: 2354616436867402102}
   m_Layer: 0
   m_Name: Log
-  m_TagString: Untagged
+  m_TagString: Log
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -151,29 +150,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2354616436867402102
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3773945194022563979}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.141301
-  m_Height: 2.0357015
-  m_Direction: 0
-  m_Center: {x: -0.0031770468, y: 0.12708363, z: 0.00023217499}
 --- !u!1 &8834819514954891407
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +164,7 @@ GameObject:
   - component: {fileID: 8627166302343558806}
   m_Layer: 0
   m_Name: WoodLeft
-  m_TagString: MovingPlatform
+  m_TagString: Log
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8834819514954891407}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -209,7 +185,7 @@ Transform:
   - {fileID: 3773945194022857899}
   - {fileID: 1742094574394206429}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!65 &127027073386661013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -229,8 +205,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0850768, y: 0.38692307, z: 0.32041833}
-  m_Center: {x: -0.033406496, y: 0.20649654, z: 0.07770711}
+  m_Size: {x: 2, y: 0.6, z: 0.6}
+  m_Center: {x: 0, y: 0.19, z: 0.06}
 --- !u!54 &7824028324144594397
 Rigidbody:
   m_ObjectHideFlags: 0
