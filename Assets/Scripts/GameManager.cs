@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         UIManager.instance.SetScoreInGame(00);
         GroundManager.Instance.ResetGroundManager();
         Time.timeScale = 1f;
-
     }
 
     public void EndGame()

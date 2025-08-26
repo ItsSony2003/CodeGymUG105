@@ -28,11 +28,14 @@ public class SkillManager : MonoBehaviour
         
         SkillBase skillFreeze = new Freeze(ai, new FreezeConfig(), freezeEffect);
 
+
+        //foreach (var skill in skills) Debug.LogWarning(skill);
         skills.Add(skillMagnet);
         skills.Add(skillShield);
         skills.Add(skillFreeze);
         
         foreach (var skill in skills) Debug.LogWarning(skill);
+
     }
 
     void Update()

@@ -20,6 +20,7 @@ public class UiMainMenu : MonoBehaviour
     public void OnClickPlay()
     {
         UIManager.instance.ChangeMap("Play");
+        Time.timeScale = 1f;
     }
 
     public void OnClickQuitGame()
