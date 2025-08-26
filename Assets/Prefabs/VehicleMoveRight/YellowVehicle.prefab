@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4864978348060721161}
   - component: {fileID: 1000006342089244785}
   - component: {fileID: 6308393279614830721}
+  - component: {fileID: -168917232778548645}
   m_Layer: 0
   m_Name: YellowVehicle
   m_TagString: Untagged
@@ -179,3 +180,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-168917232778548645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4249492595024338849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69e48c62de06140b2c569ce8ab630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhileFrozen:
+  - {fileID: 4864978348060721161}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5661919457471600035}
   - component: {fileID: 2381231686924240101}
   - component: {fileID: 1937838808382311296}
+  - component: {fileID: 5240627353358084102}
   m_Layer: 0
   m_Name: WhiteVehicle
   m_TagString: Untagged
@@ -96,6 +97,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2230432, y: 0.37580508, z: 0.44113064}
   m_Center: {x: -0.042196393, y: 0.28979138, z: -0.013235569}
+--- !u!114 &5240627353358084102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749830215946025349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69e48c62de06140b2c569ce8ab630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhileFrozen:
+  - {fileID: 5661919457471600035}
 --- !u!1 &8368451865238880434
 GameObject:
   m_ObjectHideFlags: 0

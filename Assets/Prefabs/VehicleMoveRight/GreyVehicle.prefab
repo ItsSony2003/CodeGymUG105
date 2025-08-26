@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5961902762933498811}
   - component: {fileID: 7869542213055676546}
   - component: {fileID: 5794860060165236349}
+  - component: {fileID: 336227885496342421}
   m_Layer: 0
   m_Name: GreyVehicle
   m_TagString: Untagged
@@ -96,6 +97,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &336227885496342421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5396424717684859987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69e48c62de06140b2c569ce8ab630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhileFrozen:
+  - {fileID: 5961902762933498811}
 --- !u!1 &8860359650729209305
 GameObject:
   m_ObjectHideFlags: 0

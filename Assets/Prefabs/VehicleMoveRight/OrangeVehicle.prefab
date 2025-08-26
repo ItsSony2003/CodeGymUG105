@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6418566299543330696}
   - component: {fileID: 8605050828862453971}
   - component: {fileID: 971978570968327468}
+  - component: {fileID: 8109602966733900452}
   m_Layer: 0
   m_Name: OrangeVehicle
   m_TagString: Untagged
@@ -179,3 +180,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0891752, y: 0.4739868, z: 0.51438904}
   m_Center: {x: 0.044587612, y: 0.2630066, z: -0.003950119}
+--- !u!114 &8109602966733900452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833157067903778494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69e48c62de06140b2c569ce8ab630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhileFrozen:
+  - {fileID: 6418566299543330696}

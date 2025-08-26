@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3579238222726559649}
   - component: {fileID: 7535213325352300351}
   - component: {fileID: 4060890943787674725}
+  - component: {fileID: -3149900290342561600}
   m_Layer: 7
   m_Name: GreenVehicle
   m_TagString: Untagged
@@ -97,6 +98,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3149900290342561600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425196884293183330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed69e48c62de06140b2c569ce8ab630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhileFrozen:
+  - {fileID: 3579238222726559649}
 --- !u!1 &1355698945184907981
 GameObject:
   m_ObjectHideFlags: 0
