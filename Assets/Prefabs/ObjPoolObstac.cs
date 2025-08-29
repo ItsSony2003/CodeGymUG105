@@ -94,30 +94,24 @@ public class ObjectPoolObtac : MonoBehaviour
 
         foreach (var obj in poolQueue)
         {
-            if (obj.name.Contains(targetPrefab.name))
+            if (!obj.name.Contains(targetPrefab.name))
             {
+                continue;
+            }
+            poolQueue = new Queue<GameObject>(poolQueue);
+           
+
+            foreach (var q in poolQueue)
+            {
+                if (!q.name.Contains(targetPrefab.name))
+                {
+                    continue;
+                }
                 poolQueue = new Queue<GameObject>(poolQueue);
-                GameObject match = null;
-
-                foreach (var q in poolQueue)
-                {
-                    if (q.name.Contains(targetPrefab.name))
-                    {
-                        match = q;
-                        break;
-                    }
-                }
-
-                if (match != null)
-                {
-                    poolQueue = new Queue<GameObject>(poolQueue);
-                    poolQueue = new Queue<GameObject>(poolQueue);
-                    poolQueue = new Queue<GameObject>(poolQueue);
-                    poolQueue.Dequeue();
-                    match.SetActive(true);
-                    usingObjList.Add(match);
-                    return match;
-                }
+                poolQueue.Dequeue();
+                q.SetActive(true);
+                usingObjList.Add(q);
+                return q;
             }
         }
 
