@@ -71,7 +71,6 @@ public class Player : AIBase
                 return;
             }
 
-
             if (!gameStarted || isMoving || direction == Vector2.zero)
                 return;
 
@@ -91,6 +90,7 @@ public class Player : AIBase
     private void Death()
     {
         isDead = true;
+        transform.SetParent(null);
         GameManager.instance.EndGame();
         StopAllCoroutines();
     }
@@ -127,9 +127,13 @@ public class Player : AIBase
             elapsed += Time.deltaTime;
             yield return null;
         }
-        transform.position = targetPosition;
 
         isMoving = false;
+
+        CheckGround();
+
+        transform.position = targetPosition;
+
     }
 
     private IEnumerator RotateTowards(Vector3 direction)
@@ -171,6 +175,11 @@ public class Player : AIBase
                 //}
             }
         }
+
+        if (other.CompareTag("Water"))
+        {
+            Death();
+        }
     }
 
     public void ResetPlayer()
@@ -178,6 +187,68 @@ public class Player : AIBase
         isDead = false;
         isMoving = false;
     }
+
+    void CheckGround()
+    {
+        Ray ray = new Ray(transform.position + Vector3.up, Vector3.down);
+        RaycastHit[] hits = Physics.RaycastAll(ray, 5f);
+
+        if (hits.Length == 0)
+        {
+            //Debug.Log("Cann't raycast hit");
+            return;
+        }
+
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        bool foundGround = false;
+        bool foundLog = false;
+        bool foundWater = false;
+        Transform logTransform = null;
+
+        foreach (var hit in hits)
+        {
+            switch (hit.collider.tag)
+            {
+                case "Ground":
+                    foundGround = true;
+                    break;
+
+                case "Log":
+                    foundLog = true;
+                    logTransform = hit.collider.transform;
+                    break;
+
+                case "Water":
+                    foundWater = true;
+                    break;
+            }
+        }
+
+        if (foundGround)
+        {
+            if (transform.parent != null)
+            {
+                //Debug.Log("Detach");
+                transform.SetParent(null, true);
+            }
+        }
+        else if (foundLog)
+        {
+            if (transform.parent != logTransform)
+            {
+                //Debug.Log("Attach: " + logTransform.name);
+                transform.SetParent(logTransform, true);
+            }
+        }
+        else if (foundWater)
+        {
+            //Debug.LogError("!");
+            transform.SetParent(null, true);
+            Death();
+        }
+    }
+
 }
 
 public class PlayerConfig : RoleConfig

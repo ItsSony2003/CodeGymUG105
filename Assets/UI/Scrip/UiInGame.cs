@@ -27,6 +27,18 @@ public class UiInGame : MonoBehaviour
     {
         UIManager.instance.ChangeMap("MainMenu");
     }
+    public void OnClickOpenSettingUi()
+    {
+        UIManager.instance.settingUi.SetActive(true);
+        UIManager.instance.gamePausedUi.SetActive(false);
+
+    }
+    public void OnClickCloseSettingUi()
+    {
+        UIManager.instance.settingUi.SetActive(false);
+        UIManager.instance.gamePausedUi.SetActive(true);
+
+    }
 
     public void SetScore(int num)
     {

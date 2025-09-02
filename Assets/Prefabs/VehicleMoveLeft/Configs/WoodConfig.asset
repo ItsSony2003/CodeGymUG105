@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WoodConfig
   m_EditorClassIdentifier: 
   obstacleName: Wood
-  speed: 5
+  speed: 2

@@ -20,6 +20,7 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            AudioManager.Instance.PlaySFX(SfxId.Coin, 1f, Random.Range(0.95f, 1.05f));
             gameObject.SetActive(false);
             GameManager.instance.AddCoin();
         }

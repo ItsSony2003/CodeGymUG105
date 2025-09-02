@@ -20,6 +20,7 @@ public class UiMainMenu : MonoBehaviour
     public void OnClickPlay()
     {
         UIManager.instance.ChangeMap("Play");
+        Time.timeScale = 1f;
     }
 
     public void OnClickQuitGame()
@@ -31,4 +32,15 @@ public class UiMainMenu : MonoBehaviour
     {
         Debug.Log("Dang Phat trien tinh nang");
     }
+    public void OnClickOpenSettingUi()
+    {
+        UIManager.instance.settingUi.SetActive(true);
+        
+    }
+    public void OnClickCloseSettingUi()
+    {
+        UIManager.instance.settingUi.SetActive(false);
+    }
+    
+
 }
